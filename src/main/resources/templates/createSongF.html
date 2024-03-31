@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        button {
+            background-color: white;
+            color: black;
+            border-radius: 10em;
+            font-size: 17px;
+            font-weight: 600;
+            padding: 1em 2em;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            border: 1px solid black;
+            box-shadow: 0 0 0 0 black;
+        }
+
+        button:hover {
+            transform: translateY(-4px) translateX(-2px);
+            box-shadow: 2px 5px 0 0 black;
+        }
+
+        button:active {
+            transform: translateY(2px) translateX(1px);
+            box-shadow: 0 0 0 0 black;
+        }
+        button, button a {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+<button><a th:href="@{/song/home}">Go back home</a></button>
+<section class="vh-100" style="background-color: #2779e2;">
+    <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-xl-9">
+                <form method="post" th:object="${newSong}" th:action="@{/song/createSong}" enctype="multipart/form-data">
+                    <h1 class="text-white mb-4">Add new song</h1>
+
+                    <div  class="card" style="border-radius: 15px;">
+                        <div class="card-body">
+
+                            <div class="row align-items-center pt-4 pb-3">
+                                <div class="col-md-3 ps-5">
+
+                                    <h6 class="mb-0">Song name</h6>
+
+                                </div>
+                                <div class="col-md-9 pe-5">
+
+                                    <input type="text" th:field="*{songName}" class="form-control form-control-lg" />
+
+                                </div>
+                            </div>
+                            <p style="color: red" th:text="${msg}"></p>
+
+                            <hr class="mx-n3">
+
+                            <div class="row align-items-center py-3">
+                                <div class="col-md-3 ps-5">
+
+                                    <h6 class="mb-0">Date</h6>
+
+                                </div>
+                                <div class="col-md-9 pe-5">
+
+                                    <input type="date" th:field="*{songTime}"  class="form-control form-control-lg"  />
+
+                                </div>
+                            </div>
+
+                            <hr class="mx-n3">
+
+                            <div class="row align-items-center py-3">
+                                <div class="col-md-3 ps-5">
+
+                                    <h6 class="mb-0">Album</h6>
+
+                                </div>
+                                <div class="col-md-9 pe-5">
+
+                                    <input th:field="*{album.albumId}" class="form-control" >
+
+                                </div>
+                            </div>
+                            <hr class="mx-n3">
+                            <div class="row align-items-center py-3">
+                                <div class="col-md-3 ps-5">
+
+                                    <h6 class="mb-0">Singer</h6>
+
+                                </div>
+                                <div class="col-md-9 pe-5">
+
+                                    <input type="text" th:field="*{singer.singerId}"  class="form-control form-control-lg"  />
+
+                                </div>
+                            </div>
+                            <hr class="mx-n3">
+                            <div class="row align-items-center py-3">
+                                <div class="col-md-3 ps-5">
+
+                                    <h6 class="mb-0">Country</h6>
+
+                                </div>
+                                <div class="col-md-9 pe-5">
+
+                                    <input type="text" th:field="*{country.countryId}"  class="form-control form-control-lg"/>
+
+                                </div>
+                            </div>
+                            <hr class="mx-n3">
+
+                            <div class="row align-items-center py-3">
+                                <div class="col-md-3 ps-5">
+
+                                    <h6 class="mb-0">Upload image</h6>
+
+                                </div>
+                                <div class="col-md-9 pe-5">
+
+                                    <input name="image" class="form-control form-control-lg" id="formFileLg" type="file" />
+                                    <div class="small text-muted mt-2">Upload your CV/Resume or any other relevant file. Max file
+                                        size 50 MB</div>
+
+                                </div>
+                            </div>
+                            <hr class="mx-n3">
+
+                            <div class="row align-items-center py-3">
+                                <div class="col-md-3 ps-5">
+
+                                    <h6 class="mb-0">Upload song</h6>
+
+                                </div>
+                                <div class="col-md-9 pe-5">
+
+                                    <input   name="music"  class="form-control form-control-lg"  type="file" />
+                                    <div class="small text-muted mt-2">Upload your CV/Resume or any other relevant file. Max file
+                                        size 50 MB</div>
+
+                                </div>
+                            </div>
+
+                            <hr class="mx-n3">
+
+                            <div class="px-5 py-4">
+                                <button type="submit" class="btn btn-primary btn-lg">Send application</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
