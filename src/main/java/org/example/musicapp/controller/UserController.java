@@ -28,7 +28,7 @@ public class UserController {
     IUserService userService;
     @Autowired
     ISongService songService;
-    public static String UPLOAD_DIRECTORY = "/home/dang/Test111111111111111111/MusicApp/src/main/resources/static/";
+    public static String UPLOAD_DIRECTORY = "/home/dang/Test111111111111111111/MusicApp/src/main/resources/static/freeFile";
     public String uploadImage(MultipartFile file) throws IOException {
         String fileName=file.getOriginalFilename();
         FileCopyUtils.copy(file.getBytes(), new File(UPLOAD_DIRECTORY+fileName));
@@ -62,23 +62,23 @@ public class UserController {
         ModelAndView modelAndView=new ModelAndView("login");
         return modelAndView;
     }
-    @PostMapping("/login")
-    public ModelAndView login(@PageableDefault(value = 6)Pageable pageable, @RequestParam(value = "username")String username, @RequestParam(value = "password")String password, HttpSession session){
-
-        User user=userService.logIn(username,password);
-        session.setAttribute("sessionUser",user);
-        User user1= (User) session.getAttribute("sessionUser");
-        ModelAndView modelAndView;
-        if (user==null){
-            modelAndView = new ModelAndView("login");
-            modelAndView.addObject("msg","login fail");
-        }
-        else {
-            modelAndView = new ModelAndView("home");
-            modelAndView.addObject("User",user1);
-            modelAndView.addObject("allSong",songService.viewAllSong(pageable));
-        }
-        return modelAndView;
-    }
+//    @PostMapping("/login")
+//    public ModelAndView login(@PageableDefault(value = 6)Pageable pageable, @RequestParam(value = "username")String username, @RequestParam(value = "password")String password, HttpSession session){
+//
+//        User user=userService.logIn(username,password);
+//        session.setAttribute("sessionUser",user);
+//        User user1= (User) session.getAttribute("sessionUser");
+//        ModelAndView modelAndView;
+//        if (user==null){
+//            modelAndView = new ModelAndView("login");
+//            modelAndView.addObject("msg","login fail");
+//        }
+////        else {
+////            modelAndView = new ModelAndView("home");
+////            modelAndView.addObject("User",user1);
+////            modelAndView.addObject("allSong",songService.viewAllSong(pageable));
+////        }
+////        return modelAndView;
+//    }
 
 }
